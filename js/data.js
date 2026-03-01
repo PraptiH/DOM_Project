@@ -1,4 +1,4 @@
-const data = {
+const data = `{
   "success": true,
   "data": [
     {
@@ -596,4 +596,4 @@ const data = {
       ]
     }
   ]
-}
+}`
