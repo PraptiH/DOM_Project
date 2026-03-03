@@ -23,7 +23,7 @@ function loadMilestones() {
             return ` <div class="visiblePanel flex items-center gap-3 mx-3 px-[8%] py-[2%] border-b-1 border-gray-400">
                     <div class="w-3 h-3 rounded-sm bg-white"></div>
                     <p class="text-white">${milestone.name} 1</p>
-                    <button onclick="displayModule(this)"><i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i></button>
+                    <button onclick="displayModule(this, ${milestone._id})"><i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i></button>
                 </div>
 
                 <div class="hidden hiddenPanel mt-2 border-2 border-white ml-25 mr-5">
@@ -39,7 +39,7 @@ function loadMilestones() {
     })
 }
 
-function displayModule(module) {
+function displayModule(module, id) {
     const currentPanel = module.parentNode.nextElementSibling
     const currentMilestone = module.parentNode
 
@@ -61,7 +61,12 @@ function displayModule(module) {
         currentPanel.classList.toggle("hidden")
         currentMilestone.classList.toggle("font-bold")
     }
+
+    showMilestoneImage(id)
 }
 
-
+function showMilestoneImage(id){
+    const milestoneImage = document.querySelector('.milestoneImage')
+    milestoneImage.src = milestonesData[id].image
+}
 loadMilestones()
