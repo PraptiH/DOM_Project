@@ -21,15 +21,15 @@ function loadMilestones() {
     document.querySelectorAll('.milestones').forEach(milestones => {
         milestones.innerHTML = milestonesData.map(function (milestone) {
             return ` <div class="visiblePanel flex items-center gap-3 mx-3 px-[8%] py-[2%] border-b-1 border-gray-400">
-                    <div class="w-3 h-3 rounded-sm bg-white"></div>
+                    <input type="checkbox" name="" id="">
                     <p class="text-white">${milestone.name} 1</p>
                     <button onclick="displayModule(this, ${milestone._id})"><i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i></button>
                 </div>
 
-                <div class="hidden hiddenPanel mt-2 border-2 border-white ml-25 mr-5">
+                <div class="hidden hiddenPanel mt-2 ml-25 mr-5">
                 ${milestone.modules
                     .map(function (module) {
-                        return `<div class="module mt-2">
+                        return `<div class="module mt-2 cursor-pointer rounded-xl p-2 shadow shadow-slate-50 transition-all ease-in-out hover:-translate-y-1 hover:scale-105">
                         <p class="text-white">${module.name}</p>
                     </div>`
                     }).join("")
