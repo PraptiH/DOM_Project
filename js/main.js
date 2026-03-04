@@ -65,14 +65,21 @@ function displayModule(module, id) {
     showMilestoneImage(id)
 }
 
+const milestoneImage = document.querySelector('.milestoneImage')
+
 function showMilestoneImage(id){
-    const milestoneImage = document.querySelector('.milestoneImage')
     const milestoneTitle = document.querySelector('.milestoneTitle')
     const milestoneParagraph = document.querySelector('.milestoneParagraph')
 
+    milestoneImage.style.opacity = '0'
     milestoneImage.src = milestonesData[id].image
     milestoneTitle.textContent = milestonesData[id].name
     milestoneParagraph.textContent = milestonesData[id].description
     console.log(milestoneParagraph.textContent = milestonesData[id].description)
 }
+
+milestoneImage.onload = function() {
+    this.style.opacity ='1'
+}
+
 loadMilestones()
