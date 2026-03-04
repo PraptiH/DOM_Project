@@ -67,6 +67,12 @@ function displayModule(module, id) {
 
 function showMilestoneImage(id){
     const milestoneImage = document.querySelector('.milestoneImage')
+    const milestoneTitle = document.querySelector('.milestoneTitle')
+    const milestoneParagraph = document.querySelector('.milestoneParagraph')
+
     milestoneImage.src = milestonesData[id].image
+    milestoneTitle.textContent = milestonesData[id].name
+    milestoneParagraph.textContent = milestonesData[id].description
+    console.log(milestoneParagraph.textContent = milestonesData[id].description)
 }
 loadMilestones()
