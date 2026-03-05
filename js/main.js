@@ -20,8 +20,9 @@ function loadMilestones() {
 
     document.querySelectorAll('.milestones').forEach(milestones => {
         milestones.innerHTML = milestonesData.map(function (milestone) {
-            return ` <div class="visiblePanel flex items-center gap-3 mx-3 px-[8%] py-[2%] border-b-1 border-gray-400">
-                    <input type="checkbox" name="" id="">
+            return `<div id="${milestone._id}" class="milestone">
+            <div class="visiblePanel flex items-center gap-3 mx-3 px-[8%] py-[2%] border-b-1 border-gray-400">
+                    <input type="checkbox" onclick="markMilestone(this, ${milestone._id})" name="" id="">
                     <p class="text-white">${milestone.name} 1</p>
                     <button onclick="displayModule(this, ${milestone._id})"><i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i></button>
                 </div>
@@ -34,7 +35,8 @@ function loadMilestones() {
                     </div>`
                     }).join("")
                 }
-                </div>`
+                </div>
+            </div>`
         }).join("")
     })
 }
@@ -67,7 +69,7 @@ function displayModule(module, id) {
 
 const milestoneImage = document.querySelector('.milestoneImage')
 
-function showMilestoneImage(id){
+function showMilestoneImage(id) {
     const milestoneTitle = document.querySelector('.milestoneTitle')
     const milestoneParagraph = document.querySelector('.milestoneParagraph')
 
@@ -78,8 +80,24 @@ function showMilestoneImage(id){
     console.log(milestoneParagraph.textContent = milestonesData[id].description)
 }
 
-milestoneImage.onload = function() {
-    this.style.opacity ='1'
+milestoneImage.onload = function () {
+    this.style.opacity = '1'
+}
+
+function markMilestone(checkbox, id) {
+    const completedMilestone = document.querySelector('.completedMilestone')
+    const milestonesContainer = document.querySelector('.milestones')
+    const milestoneDiv = document.getElementById(id)
+
+    if (checkbox.checked) {
+        // Move to completed milestones
+        completedMilestone.appendChild(milestoneDiv)
+    }
+    else {
+        // Move back to active milestones
+        milestonesContainer.appendChild(milestoneDiv)
+        
+    }
 }
 
 loadMilestones()
