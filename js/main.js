@@ -1,5 +1,6 @@
 const milestonesData = JSON.parse(data).data
 console.log(milestonesData)
+console.log(typeof milestonesData)
 
 function loadMilestones() {
     // const milestones = document.querySelector('.milestones');
@@ -96,7 +97,10 @@ function markMilestone(checkbox, id) {
     else {
         // Move back to active milestones
         milestonesContainer.appendChild(milestoneDiv)
-        
+
+        // Sort all milestones by ID
+        const allMilestones = Array.from(milestonesContainer.children)
+        allMilestones.sort((a, b) => parseInt(a.id) - parseInt(b.id))
     }
 }
 
