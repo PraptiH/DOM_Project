@@ -93,6 +93,14 @@ function markMilestone(checkbox, id) {
     if (checkbox.checked) {
         // Move to completed milestones
         completedMilestone.appendChild(milestoneDiv)
+
+        // Sort completed milestones by ID
+        const sortCompletedMilestone = Array.from(completedMilestone.children)
+        sortCompletedMilestone.sort((a, b) => parseInt(a.id) - parseInt(b.id))
+
+        // Apply sorted order to DOM
+        completedMilestone.innerHTML = ''
+        sortCompletedMilestone.forEach(milestone => completedMilestone.appendChild(milestone))
     }
     else {
         // Move back to active milestones
@@ -101,6 +109,10 @@ function markMilestone(checkbox, id) {
         // Sort all milestones by ID
         const allMilestones = Array.from(milestonesContainer.children)
         allMilestones.sort((a, b) => parseInt(a.id) - parseInt(b.id))
+
+        // Apply sorted order to DOM
+        milestonesContainer.innerHTML = ''
+        allMilestones.forEach(milestone => milestonesContainer.appendChild(milestone))
     }
 }
 
